@@ -1,10 +1,7 @@
 package clustersingletonex
 
 import akka.actor.{Actor, ActorLogging, ActorSystem, PoisonPill, Props}
-import akka.cluster.singleton.{
-  ClusterSingletonManager,
-  ClusterSingletonManagerSettings
-}
+import akka.cluster.singleton.{ClusterSingletonManager, ClusterSingletonManagerSettings}
 import clustersingletonex.Controller.CallOnce
 
 object Controller {
