@@ -14,7 +14,11 @@ class Controller extends Actor with ActorLogging {
   import Controller._
 
   override def receive: Receive = {
-    case CallOnce => println(s"controller call once, from ${sender()}")
+    case CallOnce => handleCallOnce()
+  }
+
+  private[this] def handleCallOnce(): Unit = {
+    println(s"controller call once, from ${sender()}")
   }
 }
 
@@ -22,7 +26,7 @@ object Cluster {
   def main(args: Array[String]): Unit = {
     implicit val system = ActorSystem("exsystem")
 
-    val controllerRef = system.actorOf(
+    val controller = system.actorOf(
       ClusterSingletonManager.props(
         singletonProps = Controller.props,
         terminationMessage = PoisonPill,
@@ -30,6 +34,6 @@ object Cluster {
       )
     )
 
-    controllerRef ! CallOnce
+    controller ! CallOnce
   }
 }
