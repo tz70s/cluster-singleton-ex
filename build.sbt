@@ -1,4 +1,4 @@
-name := "clustersingletonex"
+name := "cluster-singleton-ex"
 
 version := "0.1"
 
